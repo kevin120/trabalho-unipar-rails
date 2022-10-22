@@ -5,12 +5,12 @@ class Api::TeamsController < ApplicationController
   def index
     @teams = Team.all.order(:name)
 
-    render json: @teams
+    render json: @teams, include: [:players]
   end
 
   # GET /teams/1
   def show
-    render json: @team
+    render json: @team, include: [:players]
   end
 
   # POST /teams
@@ -18,7 +18,7 @@ class Api::TeamsController < ApplicationController
     @team = Team.new(team_params)
 
     if @team.save
-      render json: @team, status: :created, location: @team
+      render json: @team, status: :created, location: api_team_url(@team)
     else
       render json: @team.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Api::TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   def update
     if @team.update(team_params)
-      render json: @team
+      render json: @team, include: [:players]
     else
       render json: @team.errors, status: :unprocessable_entity
     end
