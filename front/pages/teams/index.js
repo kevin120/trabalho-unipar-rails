@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import AddIcon from '@mui/icons-material/Add';
+import HomeIcon from '@mui/icons-material/Home';
 
 // Internals
 import ROUTES from "../../src/config/routes";
@@ -24,7 +26,7 @@ function TeamList() {
   const [isLoading, setIsLoading] = useState(true);
 
   const deleteTeam = (team) => {
-    var accepted = confirm(`Você realmente gostaria de deletar o artigo: ${team.title}`);
+    var accepted = confirm(`Você realmente gostaria de deletar o time: ${team.name}`);
     if (!accepted) return;
 
     setIsLoading(true);
@@ -57,17 +59,30 @@ function TeamList() {
   return (
     <Container fluid>
       <Grid container mt={2}>
-        <Grid xs={6}>
+        <Grid xs={2}>
+          <p>
+            <Link
+              href={{
+                pathname: '/',
+              }}
+            >
+              <Button variant="contained" color="info" size="small">
+                <HomeIcon fontSize="small" /> Início
+              </Button>
+            </Link>
+          </p>
+        </Grid>
+        <Grid xs={8}>
           <Typography variant="h4">Teams List</Typography>
         </Grid>
-        <Grid xs={6}>
+        <Grid xs={2}>
           <p>
             <Link
               href={{
                 pathname: ROUTES.teams.new,
               }}
             >
-              <Button variant="contained" color="success" size="small" startIcon={<DeleteForeverIcon fontSize="small" />}>
+              <Button variant="contained" color="success" size="small" startIcon={<AddIcon fontSize="small" />}>
                 New Team
               </Button>
             </Link>
@@ -79,12 +94,9 @@ function TeamList() {
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Age</th>
-                <th>Height</th>
-                <th>Position</th>
-                <th>Best Foot</th>
-                {/* <th>Actual Team</th> */}
-                <th>&nbsp;</th>
+                <th>Country</th>
+                <th>Players Count</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -93,11 +105,8 @@ function TeamList() {
                   <tr key={team.id}>
                     <td>{team.id}</td>
                     <td>{team.name}</td>
-                    <td>{team.age}</td>
-                    <td>{team.height}</td>
-                    <td>{team.position}</td>
-                    <td>{team.foot}</td>
-                    {/* <td>{team.team.name}</td> */}
+                    <td>{team.country}</td>
+                    <td>{team.players.length}</td>
                     <td>
                       <Link
                         href={{

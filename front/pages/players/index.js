@@ -10,8 +10,10 @@ import { toast } from "react-toastify";
 
 // Material Icons
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import AddIcon from '@mui/icons-material/Add';
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import HomeIcon from '@mui/icons-material/Home';
 
 // Internals
 import ROUTES from "../../src/config/routes";
@@ -24,7 +26,7 @@ function PlayerList() {
   const [isLoading, setIsLoading] = useState(true);
 
   const deletePlayer = (player) => {
-    var accepted = confirm(`Você realmente gostaria de deletar o artigo: ${player.title}`);
+    var accepted = confirm(`Você realmente gostaria de deletar o jogador: ${player.name}`);
     if (!accepted) return;
 
     setIsLoading(true);
@@ -57,17 +59,30 @@ function PlayerList() {
   return (
     <Container fluid>
       <Grid container mt={2}>
-        <Grid xs={6}>
+      <Grid xs={2}>
+          <p>
+            <Link
+              href={{
+                pathname: '/',
+              }}
+            >
+              <Button variant="contained" color="info" size="small">
+                <HomeIcon fontSize="small" /> Início
+              </Button>
+            </Link>
+          </p>
+        </Grid>
+        <Grid xs={8}>
           <Typography variant="h4">Players List</Typography>
         </Grid>
-        <Grid xs={6}>
+        <Grid xs={2}>
           <p>
             <Link
               href={{
                 pathname: ROUTES.players.new,
               }}
             >
-              <Button variant="contained" color="success" size="small" startIcon={<DeleteForeverIcon fontSize="small" />}>
+              <Button variant="contained" color="success" size="small" startIcon={<AddIcon fontSize="small" />}>
                 New Player
               </Button>
             </Link>

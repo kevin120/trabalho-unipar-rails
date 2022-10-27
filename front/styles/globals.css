@@ -29,3 +29,18 @@ div.field {
     background: black;
   }
 }
+
+/* .table-container {
+
+} */
+
+table {
+  width: 100%;
+  border: 2px solid forestgreen;
+  justify-content: center;
+  align-items: center;
+}
+
+td {
+  text-align: center;
+}

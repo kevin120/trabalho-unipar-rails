@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ROUTES from "../../../src/config/routes";
 import PlayerService from "../../../src/services/PlayerService";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button } from "@mui/material";
 
 function ShowPlayer() {
   const router = useRouter()
@@ -28,7 +30,9 @@ function ShowPlayer() {
             pathname: ROUTES.players.list,
           }}
         >
-          <a>Voltar</a>
+          <Button variant="contained" color="warning" size="small">
+            <ArrowBackIcon fontSize="small" /> Voltar
+          </Button>
         </Link>
       </p>
 
@@ -36,20 +40,20 @@ function ShowPlayer() {
         <dt>ID</dt>
         <dd>{player.id}</dd>
 
-        {/* <dt>Title</dt>
-        <dd>{player.title}</dd>
+        <dt>Name</dt>
+        <dd>{player.name}</dd>
 
-        <dt>Author</dt>
-        <dd>{player.author.name}</dd>
+        <dt>Age</dt>
+        <dd>{player.age}</dd>
 
-        <dt>Category</dt>
-        <dd>{player.category.name}</dd>
+        <dt>Position</dt>
+        <dd>{player.position}</dd>
 
-        <dt>Body</dt>
-        <dd>{player.body}</dd>
+        <dt>Best Foot</dt>
+        <dd>{player.foot}</dd>
 
-        <dt>Created At</dt>
-        <dd>{player.created_at}</dd> */}
+        <dt>Actual Team</dt>
+        <dd>{player.team.name} ({player.team.country})</dd>
       </dl>
 
     </>

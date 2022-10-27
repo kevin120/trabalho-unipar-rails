@@ -5,6 +5,9 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import ROUTES from "../../../src/config/routes";
 import TeamService from "../../../src/services/TeamService";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button } from "@mui/material";
+import SaveIcon from '@mui/icons-material/Save';
 
 
 function EditTeam() {
@@ -37,67 +40,35 @@ function EditTeam() {
 
   return (
     <>
-      <p>Página de Edição do jogador: {id}</p>
+      <p>Página de Edição do time: {id}</p>
       <p>
         <Link
           href={{
-            pathname: ROUTES.teams.list,
+            pathname: ROUTES.players.list,
           }}
         >
-          <a>Cancelar</a>
+          <Button variant="contained" color="warning" size="small">
+            <ArrowBackIcon fontSize="small" /> Cancelar
+          </Button>
         </Link>
       </p>
 
       <form onSubmit={handleSubmit((data) => updateTeam(data))}>
         <div className="field">
-          <label>Title</label>
-          <input {...register("title", { required: true })} defaultValue={team.title} />
-          {errors.title && <p>title is required.</p>}
+          <label>Name</label>
+          <input {...register("name", { required: true })} defaultValue={team.name} />
+          {errors.name && <p>name is required.</p>}
         </div>
 
         <div className="field">
-          <label>Body</label>
-          <input {...register("body", { required: true })} defaultValue={team.body} />
-          {errors.body && <p>body is required.</p>}
+          <label>Country</label>
+          <input {...register("country", { required: true })} defaultValue={team.country} />
+          {errors.country && <p>country is required.</p>}
         </div>
 
-        {/* <div className="field">
-          <label>Team</label>
-          <select {...register("team_id", { pattern: /\d/ })} defaultValue={team.id}>
-            <option>Select Team</option>
-            {teams.map((team) => {
-              return (
-                <option key={team.id} value={team.id}>
-                  {team.name}
-                </option>
-              );
-            })}
-          </select>
-          {errors.team_id && <p>Team is required.</p>}
-        </div> */}
-
-        {/* <div className="field">
-          <label>Author</label>
-          <select {...register("author_id", { pattern: /\d/ })} defaultValue={team.author_id}>
-            <option>Select Author</option>
-            {users.map((user) => {
-              return (
-                <option key={user.id} value={user.id}>
-                  {user.name}
-                </option>
-              );
-            })}
-          </select>
-          {errors.author_id && <p>Author is required.</p>}
-        </div> */}
-
-        <div className="field">
-          <label>Published At</label>
-          <input {...register("published_at", { required: true })} defaultValue={team.published_at} />
-          {errors.published_at && <p>Published at is required.</p>}
-        </div>
-
-        <input type="submit" />
+        <Button type="submit" variant="contained" color="success" size="small">
+          <SaveIcon fontSize="small" /> Salvar
+        </Button>
       </form>
     </>
   );

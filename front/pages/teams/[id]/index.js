@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ROUTES from "../../../src/config/routes";
 import TeamService from "../../../src/services/TeamService";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button } from "@mui/material";
 
 function ShowTeam() {
   const router = useRouter()
@@ -20,7 +22,7 @@ function ShowTeam() {
 
   return (
     <>
-      <p>Exibindo o jogador: {id}</p>
+      <p>Exibindo o Time: {id}</p>
 
       <p>
         <Link
@@ -28,7 +30,9 @@ function ShowTeam() {
             pathname: ROUTES.teams.list,
           }}
         >
-          <a>Voltar</a>
+          <Button variant="contained" color="warning" size="small">
+            <ArrowBackIcon fontSize="small" /> Voltar
+          </Button>
         </Link>
       </p>
 
@@ -36,20 +40,15 @@ function ShowTeam() {
         <dt>ID</dt>
         <dd>{team.id}</dd>
 
-        {/* <dt>Title</dt>
-        <dd>{team.title}</dd>
+        <dt>Name</dt>
+        <dd>{team.name}</dd>
 
-        <dt>Author</dt>
-        <dd>{team.author.name}</dd>
+        <dt>Country</dt>
+        <dd>{team.country}</dd>
 
-        <dt>Category</dt>
-        <dd>{team.category.name}</dd>
+        <dt>Players Count</dt>
+        <dd>{team.players.length}</dd>
 
-        <dt>Body</dt>
-        <dd>{team.body}</dd>
-
-        <dt>Created At</dt>
-        <dd>{team.created_at}</dd> */}
       </dl>
 
     </>

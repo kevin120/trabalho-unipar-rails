@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import ROUTES from "../../../src/config/routes";
 import PlayerService from "../../../src/services/PlayerService";
 import TeamService from "../../../src/services/TeamService";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
+import { Button } from "@mui/material";
 
 function EditPlayer() {
   const router = useRouter();
@@ -49,25 +52,45 @@ function EditPlayer() {
             pathname: ROUTES.players.list,
           }}
         >
-          <a>Cancelar</a>
+          <Button variant="contained" color="warning" size="small">
+            <ArrowBackIcon fontSize="small" /> Cancelar
+          </Button>
         </Link>
       </p>
 
       <form onSubmit={handleSubmit((data) => updatePlayer(data))}>
         <div className="field">
-          <label>Title</label>
-          <input {...register("title", { required: true })} defaultValue={player.title} />
-          {errors.title && <p>title is required.</p>}
+          <label>Name: </label>
+          <input {...register("name", { required: true })} defaultValue={player.name} />
+          {errors.name && <p>name is required.</p>}
         </div>
 
         <div className="field">
-          <label>Body</label>
-          <input {...register("body", { required: true })} defaultValue={player.body} />
-          {errors.body && <p>body is required.</p>}
+          <label>Age: </label>
+          <input {...register("age", { required: true })} defaultValue={player.age} />
+          {errors.age && <p>age is required.</p>}
         </div>
 
         <div className="field">
-          <label>Team</label>
+          <label>Height: </label>
+          <input {...register("height", { required: true })} defaultValue={player.height} />
+          {errors.height && <p>height is required.</p>}
+        </div>
+
+        <div className="field">
+          <label>Position: </label>
+          <input {...register("position", { required: true })} defaultValue={player.position} />
+          {errors.position && <p>Position is required.</p>}
+        </div>
+
+        <div className="field">
+          <label>Best Foot: </label>
+          <input {...register("foot", { required: true })} defaultValue={player.foot} />
+          {errors.foot && <p>Best Foor is required.</p>}
+        </div>
+
+        <div className="field">
+          <label>Team: </label>
           <select {...register("team_id", { pattern: /\d/ })} defaultValue={player.team_id}>
             <option>Select Team</option>
             {teams.map((team) => {
@@ -80,29 +103,9 @@ function EditPlayer() {
           </select>
           {errors.team_id && <p>Team is required.</p>}
         </div>
-
-        {/* <div className="field">
-          <label>Author</label>
-          <select {...register("author_id", { pattern: /\d/ })} defaultValue={player.author_id}>
-            <option>Select Author</option>
-            {users.map((user) => {
-              return (
-                <option key={user.id} value={user.id}>
-                  {user.name}
-                </option>
-              );
-            })}
-          </select>
-          {errors.author_id && <p>Author is required.</p>}
-        </div> */}
-
-        <div className="field">
-          <label>Published At</label>
-          <input {...register("published_at", { required: true })} defaultValue={player.published_at} />
-          {errors.published_at && <p>Published at is required.</p>}
-        </div>
-
-        <input type="submit" />
+        <Button type="submit" variant="contained" color="success" size="small">
+          <SaveIcon fontSize="small" /> Salvar
+        </Button>
       </form>
     </>
   );

@@ -5,6 +5,9 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import ROUTES from "../../src/config/routes";
 import TeamService from "../../src/services/TeamService";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
+import { Button } from "@mui/material";
 
 function NewTeam() {
   const router = useRouter()
@@ -33,47 +36,32 @@ function NewTeam() {
       <p>
         <Link
           href={{
-            pathname: ROUTES.teams.list,
+            pathname: ROUTES.players.list,
           }}
         >
-          <a>Cancelar</a>
+          <Button variant="contained" color="warning" size="small">
+            <ArrowBackIcon fontSize="small" /> Cancelar
+          </Button>
         </Link>
       </p>
 
-      {/* <form onSubmit={handleSubmit((data) => insertTeam(data))}>
+      <form onSubmit={handleSubmit((data) => insertTeam(data))}>
         <div className="field">
-          <label>Title</label>
-          <input {...register("title", { required: true })} />
-          {errors.title && <p>title is required.</p>}
+          <label>Name</label>
+          <input {...register("name", { required: true })}/>
+          {errors.name && <p>name is required.</p>}
         </div>
 
         <div className="field">
-          <label>Body</label>
-          <input {...register("body", { required: true })} />
-          {errors.body && <p>body is required.</p>}
+          <label>Country</label>
+          <input {...register("country", { required: true })}/>
+          {errors.country && <p>country is required.</p>}
         </div>
 
-        <div className="field">
-          <label>Team</label>
-          <select {...register("team_id", { pattern: /\d/ })}>
-          <option>Select Team</option>
-            {
-              teams.map((team) => {
-                return <option key={team.id} value={team.id}>{team.name}</option>
-              })
-            }
-          </select>
-          {errors.team_id && <p>Team is required.</p>}
-        </div>
-
-        <div className="field">
-          <label>Published At</label>
-          <input {...register("published_at", { required: true })} />
-          {errors.published_at && <p>Published at is required.</p>}
-        </div>
-
-        <input type="submit" />
-      </form> */}
+        <Button type="submit" variant="contained" color="success" size="small">
+          <SaveIcon fontSize="small" /> Salvar
+        </Button>
+      </form>
     </>
   );
 }
